@@ -6,10 +6,19 @@ export interface TimerState {
   isPaused: boolean
 }
 
+export interface Lap {
+  id: string
+  time: number
+  lapTime: number
+  timestamp: number
+}
+
 export interface TimerControls {
   pause: () => void
   resume: () => void
   reset: () => void
   toggle: () => void
+  recordLap: () => void
+  clearLaps: () => void
 }
 
