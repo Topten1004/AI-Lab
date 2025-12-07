@@ -3,10 +3,13 @@ export interface TimerState {
   minutes: number
   seconds: number
   totalSeconds: number
+  isPaused: boolean
 }
 
-export interface TimerConfig {
-  startTime?: number
-  paused?: boolean
+export interface TimerControls {
+  pause: () => void
+  resume: () => void
+  reset: () => void
+  toggle: () => void
 }
 
