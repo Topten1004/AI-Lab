@@ -22,67 +22,90 @@ export default function Footer() {
     <footer className="mt-16 pt-8 pb-8 border-t border-lab-border">
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="flex flex-col items-center justify-center mb-6">
-          <div className="relative inline-flex flex-col items-center gap-3 w-full max-w-2xl">
-            <div className="relative inline-flex items-center gap-1 px-8 py-4 bg-gradient-to-r from-lab-surface via-lab-surface to-lab-surface border-2 border-lab-accent/20 rounded-lg overflow-hidden">
-              {!timer.isPaused && <div className="absolute inset-0 bg-lab-accent/5 lab-pulse"></div>}
-              <div className="relative flex items-baseline gap-1">
-                <span className="text-xs uppercase tracking-[0.2em] text-lab-text/50 font-mono mr-3">Session</span>
-                <span className={`text-4xl font-mono font-bold tabular-nums tracking-wider ${timer.isPaused ? 'text-lab-text/50' : 'text-lab-accent'}`}>
-                  {displayTime}
-                </span>
-                {timer.isPaused && (
-                  <span className="ml-2 text-xs uppercase text-lab-text/40 font-mono">(Paused)</span>
+          <div className="relative inline-flex flex-col items-center gap-4 w-full max-w-3xl">
+            {/* Timer Display */}
+            <div className="relative w-full">
+              <div className="relative flex items-center justify-center px-6 py-5 bg-lab-surface border-2 border-lab-accent/30 rounded-xl overflow-hidden backdrop-blur-sm">
+                {!timer.isPaused && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-lab-accent/10 via-lab-accent/5 to-lab-accent/10 lab-pulse"></div>
                 )}
+                <div className="relative flex flex-col items-center gap-2">
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-lab-text/40 font-mono">
+                    Session Timer
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className={`text-5xl font-mono font-bold tabular-nums tracking-tight ${timer.isPaused ? 'text-lab-text/40' : 'text-lab-accent'}`}>
+                      {displayTime}
+                    </span>
+                    {timer.isPaused && (
+                      <span className="text-xs uppercase text-lab-text/30 font-mono ml-1">⏸</span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+
+            {/* Control Buttons */}
+            <div className="flex items-center gap-2.5 flex-wrap justify-center">
               <button
                 onClick={controls.toggle}
-                className="px-4 py-1.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border border-lab-border hover:border-lab-accent/50 hover:text-lab-accent transition-colors rounded"
+                className="px-5 py-2.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border-2 border-lab-accent/40 hover:border-lab-accent hover:bg-lab-accent/10 hover:text-lab-accent transition-all rounded-lg shadow-sm hover:shadow-lab-accent/20"
               >
-                {timer.isPaused ? 'Resume' : 'Pause'}
+                {timer.isPaused ? '▶ Resume' : '⏸ Pause'}
               </button>
               <button
                 onClick={controls.recordLap}
                 disabled={timer.isPaused || timer.totalSeconds === 0}
-                className="px-4 py-1.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border border-lab-border hover:border-lab-accent/50 hover:text-lab-accent transition-colors rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-5 py-2.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border-2 border-lab-border hover:border-lab-accent/50 hover:text-lab-accent transition-all rounded-lg shadow-sm hover:shadow-lab-accent/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-lab-border disabled:hover:text-lab-text/50"
               >
-                Lap
+                ⏱ Lap
               </button>
               <button
                 onClick={controls.reset}
-                className="px-4 py-1.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border border-lab-border hover:border-lab-warning/50 hover:text-lab-warning transition-colors rounded"
+                className="px-5 py-2.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border-2 border-lab-border hover:border-lab-warning/60 hover:text-lab-warning hover:bg-lab-warning/10 transition-all rounded-lg shadow-sm"
               >
-                Reset
+                ↻ Reset
               </button>
               {laps.length > 0 && (
                 <button
                   onClick={controls.clearLaps}
-                  className="px-4 py-1.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border border-lab-border hover:border-lab-text/50 hover:text-lab-text/70 transition-colors rounded"
+                  className="px-5 py-2.5 text-xs uppercase tracking-wider font-mono bg-lab-surface border-2 border-lab-border hover:border-lab-text/50 hover:text-lab-text/80 transition-all rounded-lg shadow-sm"
                 >
-                  Clear Laps
+                  ✕ Clear Laps
                 </button>
               )}
             </div>
+
+            {/* Laps List */}
             {laps.length > 0 && (
-              <div className="w-full mt-4 max-h-48 overflow-y-auto border border-lab-border rounded-lg bg-lab-surface/50 p-4">
-                <div className="text-xs uppercase tracking-wider text-lab-text/50 font-mono mb-2 text-center">
-                  Laps ({laps.length})
+              <div className="w-full mt-2 max-h-56 overflow-y-auto border-2 border-lab-border/50 rounded-xl bg-lab-surface/30 backdrop-blur-sm p-4">
+                <div className="sticky top-0 bg-lab-surface/80 backdrop-blur-sm pb-2 mb-3 border-b border-lab-border/30">
+                  <div className="text-xs uppercase tracking-wider text-lab-accent/80 font-mono text-center">
+                    ⏱ Laps Recorded ({laps.length})
+                  </div>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-2">
                   {laps.map((lap, index) => (
                     <div
                       key={lap.id}
-                      className="flex items-center justify-between px-3 py-1.5 bg-lab-surface/30 border border-lab-border/50 rounded text-xs font-mono"
+                      className="flex items-center justify-between px-4 py-2.5 bg-lab-surface/50 border border-lab-accent/20 rounded-lg text-xs font-mono hover:bg-lab-surface/70 hover:border-lab-accent/30 transition-all"
                     >
-                      <span className="text-lab-text/60">Lap {index + 1}</span>
-                      <div className="flex items-center gap-4">
-                        <span className="text-lab-text/70">
-                          Lap: <span className="text-lab-accent">{formatLapTime(lap.lapTime)}</span>
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-lab-accent/20 text-lab-accent font-bold text-[10px]">
+                          {index + 1}
                         </span>
-                        <span className="text-lab-text/50">
-                          Total: <span className="text-lab-text/70">{formatLapTime(lap.time)}</span>
-                        </span>
+                        <span className="text-lab-text/50 uppercase tracking-wider">Lap {index + 1}</span>
+                      </div>
+                      <div className="flex items-center gap-5">
+                        <div className="text-right">
+                          <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Lap Time</div>
+                          <div className="text-lab-accent font-bold">{formatLapTime(lap.lapTime)}</div>
+                        </div>
+                        <div className="w-px h-8 bg-lab-border/50"></div>
+                        <div className="text-right">
+                          <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Total</div>
+                          <div className="text-lab-text/70 font-semibold">{formatLapTime(lap.time)}</div>
+                        </div>
                       </div>
                     </div>
                   ))}
