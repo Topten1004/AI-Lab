@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Footer from '@/components/Layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Behavioral AI Lab - Attention Response Lab',
@@ -14,10 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
