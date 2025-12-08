@@ -12,7 +12,8 @@ import {
   calculateElapsedTime,
 } from '@/lib/timer/manageTimerStorage'
 import { getStoredLaps, saveLaps, clearStoredLaps } from '@/lib/timer/manageLaps'
-import type { TimerState, TimerControls, Lap } from '@/types/timer'
+import { calculateTimerStats } from '@/lib/timer/calculateTimerStats'
+import type { TimerState, TimerControls, Lap, TimerStats } from '@/types/timer'
 
 export const useTimer = () => {
   const [totalSeconds, setTotalSeconds] = useState(0)
@@ -161,6 +162,8 @@ export const useTimer = () => {
     clearLaps,
   }
 
-  return { timer, controls, laps }
+  const stats: TimerStats = calculateTimerStats(laps)
+
+  return { timer, controls, laps, stats }
 }
 

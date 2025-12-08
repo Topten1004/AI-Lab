@@ -22,3 +22,10 @@ export interface TimerControls {
   clearLaps: () => void
 }
 
+export interface TimerStats {
+  fastestLap: number | null
+  slowestLap: number | null
+  averageLapTime: number | null
+  totalLaps: number
+}
+

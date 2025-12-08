@@ -5,7 +5,7 @@ import { formatTimerDisplay } from '@/lib/timer/formatTimer'
 import type { Lap } from '@/types/timer'
 
 export default function Footer() {
-  const { timer, controls, laps } = useTimer()
+  const { timer, controls, laps, stats } = useTimer()
   const displayTime = formatTimerDisplay(timer)
 
   const formatLapTime = (seconds: number): string => {
@@ -76,6 +76,30 @@ export default function Footer() {
               )}
             </div>
 
+            {/* Statistics */}
+            {laps.length > 0 && (
+              <div className="w-full grid grid-cols-3 gap-3">
+                {stats.fastestLap !== null && (
+                  <div className="px-4 py-3 bg-lab-surface/40 border border-lab-accent/30 rounded-lg text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-lab-text/50 font-mono mb-1">Fastest Lap</div>
+                    <div className="text-lg font-mono font-bold text-lab-accent">{formatLapTime(stats.fastestLap)}</div>
+                  </div>
+                )}
+                {stats.averageLapTime !== null && (
+                  <div className="px-4 py-3 bg-lab-surface/40 border border-lab-border/50 rounded-lg text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-lab-text/50 font-mono mb-1">Avg Lap</div>
+                    <div className="text-lg font-mono font-bold text-lab-text/80">{formatLapTime(stats.averageLapTime)}</div>
+                  </div>
+                )}
+                {stats.slowestLap !== null && (
+                  <div className="px-4 py-3 bg-lab-surface/40 border border-lab-text/30 rounded-lg text-center">
+                    <div className="text-[10px] uppercase tracking-wider text-lab-text/50 font-mono mb-1">Slowest Lap</div>
+                    <div className="text-lg font-mono font-bold text-lab-text/60">{formatLapTime(stats.slowestLap)}</div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Laps List */}
             {laps.length > 0 && (
               <div className="w-full mt-2 max-h-56 overflow-y-auto border-2 border-lab-border/50 rounded-xl bg-lab-surface/30 backdrop-blur-sm p-4">
@@ -85,30 +109,55 @@ export default function Footer() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  {laps.map((lap, index) => (
-                    <div
-                      key={lap.id}
-                      className="flex items-center justify-between px-4 py-2.5 bg-lab-surface/50 border border-lab-accent/20 rounded-lg text-xs font-mono hover:bg-lab-surface/70 hover:border-lab-accent/30 transition-all"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-lab-accent/20 text-lab-accent font-bold text-[10px]">
-                          {index + 1}
-                        </span>
-                        <span className="text-lab-text/50 uppercase tracking-wider">Lap {index + 1}</span>
-                      </div>
-                      <div className="flex items-center gap-5">
-                        <div className="text-right">
-                          <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Lap Time</div>
-                          <div className="text-lab-accent font-bold">{formatLapTime(lap.lapTime)}</div>
+                  {laps.map((lap, index) => {
+                    const isFastest = stats.fastestLap !== null && lap.lapTime === stats.fastestLap
+                    const isSlowest = stats.slowestLap !== null && lap.lapTime === stats.slowestLap
+                    
+                    return (
+                      <div
+                        key={lap.id}
+                        className={`flex items-center justify-between px-4 py-2.5 border rounded-lg text-xs font-mono hover:bg-lab-surface/70 transition-all ${
+                          isFastest
+                            ? 'bg-lab-accent/10 border-lab-accent/40'
+                            : isSlowest
+                            ? 'bg-lab-surface/50 border-lab-text/20'
+                            : 'bg-lab-surface/50 border-lab-accent/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-[10px] ${
+                            isFastest
+                              ? 'bg-lab-accent/30 text-lab-accent'
+                              : isSlowest
+                              ? 'bg-lab-text/20 text-lab-text/50'
+                              : 'bg-lab-accent/20 text-lab-accent'
+                          }`}>
+                            {index + 1}
+                          </span>
+                          <span className="text-lab-text/50 uppercase tracking-wider">Lap {index + 1}</span>
+                          {isFastest && (
+                            <span className="text-[10px] uppercase text-lab-accent/80 font-mono">⚡ Fastest</span>
+                          )}
+                          {isSlowest && !isFastest && (
+                            <span className="text-[10px] uppercase text-lab-text/40 font-mono">🐌 Slowest</span>
+                          )}
                         </div>
-                        <div className="w-px h-8 bg-lab-border/50"></div>
-                        <div className="text-right">
-                          <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Total</div>
-                          <div className="text-lab-text/70 font-semibold">{formatLapTime(lap.time)}</div>
+                        <div className="flex items-center gap-5">
+                          <div className="text-right">
+                            <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Lap Time</div>
+                            <div className={`font-bold ${isFastest ? 'text-lab-accent' : isSlowest ? 'text-lab-text/50' : 'text-lab-accent'}`}>
+                              {formatLapTime(lap.lapTime)}
+                            </div>
+                          </div>
+                          <div className="w-px h-8 bg-lab-border/50"></div>
+                          <div className="text-right">
+                            <div className="text-[10px] uppercase tracking-wider text-lab-text/40">Total</div>
+                            <div className="text-lab-text/70 font-semibold">{formatLapTime(lap.time)}</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )}
