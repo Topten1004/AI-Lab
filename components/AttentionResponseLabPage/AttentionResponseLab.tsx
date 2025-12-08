@@ -2,6 +2,7 @@
 
 import ExperimentVisual from './ExperimentVisual'
 import TextLog from './TextLog'
+import BehavioralMetricsPanel from '@/components/Layout/BehavioralMetricsPanel'
 
 interface AttentionResponseLabProps {
   isFocused: boolean
@@ -29,15 +30,18 @@ export default function AttentionResponseLab({ isFocused, onFocus }: AttentionRe
       </div>
       
       <div 
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="space-y-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="lg:col-span-2">
-          <ExperimentVisual />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <ExperimentVisual />
+          </div>
+          <div className="lg:col-span-1">
+            <TextLog isFocused={isFocused} />
+          </div>
         </div>
-        <div className="lg:col-span-1">
-          <TextLog isFocused={isFocused} />
-        </div>
+        <BehavioralMetricsPanel />
       </div>
     </div>
   )

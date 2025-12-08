@@ -2,6 +2,7 @@
 
 import BehavioralConflictVisual from './BehavioralConflictVisual'
 import BehavioralConflictLog from './BehavioralConflictLog'
+import BehavioralMetricsPanel from '@/components/Layout/BehavioralMetricsPanel'
 
 interface BehavioralConflictZoneProps {
   isFocused: boolean
@@ -29,15 +30,18 @@ export default function BehavioralConflictZone({ isFocused, onFocus }: Behaviora
       </div>
       
       <div 
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="space-y-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="lg:col-span-2">
-          <BehavioralConflictVisual />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <BehavioralConflictVisual />
+          </div>
+          <div className="lg:col-span-1">
+            <BehavioralConflictLog isFocused={isFocused} />
+          </div>
         </div>
-        <div className="lg:col-span-1">
-          <BehavioralConflictLog isFocused={isFocused} />
-        </div>
+        <BehavioralMetricsPanel />
       </div>
     </div>
   )
