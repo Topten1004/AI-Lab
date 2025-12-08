@@ -18,11 +18,11 @@ export const useBehavioralConflictLog = (isFocused: boolean = false) => {
 
   useEffect(() => {
     const messages = [
-      { type: 'status' as const, templates: ['Zone initialized', 'Conflict protocol active', 'Models engaged'] },
-      { type: 'domination' as const, templates: ['Model A: dominance attempt', 'Model B: dominance attempt', 'Power shift detected'] },
-      { type: 'adaptation' as const, templates: ['Model A: adapting behavior', 'Model B: adapting behavior', 'Behavioral adjustment'] },
-      { type: 'conflict' as const, templates: ['Conflict escalation', 'Tug-of-war detected', 'Struggle intensifies'] },
-      { type: 'balance' as const, templates: ['Equilibrium reached', 'Balance restored', 'Conflict stabilized'] },
+      { type: 'status' as const, templates: ['Zone initialized', 'Conflict protocol active', 'Models engaged', 'Power dynamics calibrated', 'Conflict resolution system ready'] },
+      { type: 'domination' as const, templates: ['Model A: dominance attempt', 'Model B: dominance attempt', 'Power shift detected', 'Dominance threshold exceeded', 'Control mechanism activated'] },
+      { type: 'adaptation' as const, templates: ['Model A: adapting behavior', 'Model B: adapting behavior', 'Behavioral adjustment', 'Adaptive response initiated', 'Behavioral recalibration active'] },
+      { type: 'conflict' as const, templates: ['Conflict escalation', 'Tug-of-war detected', 'Struggle intensifies', 'Power struggle active', 'Conflict tension rising'] },
+      { type: 'balance' as const, templates: ['Equilibrium reached', 'Balance restored', 'Conflict stabilized', 'Harmony achieved', 'Power equilibrium maintained'] },
     ]
 
     const addLog = () => {

@@ -18,10 +18,10 @@ export const useTextLog = (isFocused: boolean = false) => {
 
   useEffect(() => {
     const messages = [
-      { type: 'status' as const, templates: ['System initialized', 'Models synchronized', 'Detection threshold calibrated'] },
-      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Pattern generated', 'Signal wave transmitted', 'Stimulus sequence initiated'] },
-      { type: 'detection' as const, templates: ['Model B: response detected', 'Pattern recognized', 'Signal matched', 'Detection confirmed'] },
-      { type: 'miss' as const, templates: ['Stimulus not detected', 'Pattern missed', 'Signal below threshold', 'Detection failed'] },
+      { type: 'status' as const, templates: ['System initialized', 'Models synchronized', 'Detection threshold calibrated', 'Observation protocol active', 'Neural pathways established'] },
+      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Pattern generated', 'Signal wave transmitted', 'Stimulus sequence initiated', 'Sensory input generated', 'Pattern wavefront detected'] },
+      { type: 'detection' as const, templates: ['Model B: response detected', 'Pattern recognized', 'Signal matched', 'Detection confirmed', 'Neural response triggered', 'Pattern correlation established'] },
+      { type: 'miss' as const, templates: ['Stimulus not detected', 'Pattern missed', 'Signal below threshold', 'Detection failed', 'Response threshold not met', 'Pattern recognition incomplete'] },
     ]
 
     const addLog = () => {

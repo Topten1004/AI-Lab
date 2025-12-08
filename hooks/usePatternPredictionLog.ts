@@ -18,11 +18,11 @@ export const usePatternPredictionLog = (isFocused: boolean = false) => {
 
   useEffect(() => {
     const messages = [
-      { type: 'status' as const, templates: ['Room initialized', 'Pattern recognition active', 'Prediction model loaded'] },
-      { type: 'sequence' as const, templates: ['Sequence element generated', 'Pattern extended', 'New element added'] },
-      { type: 'prediction' as const, templates: ['Model B: prediction made', 'Next element predicted', 'Pattern analysis complete'] },
-      { type: 'correct' as const, templates: ['Prediction correct', 'Pattern matched', 'Successful prediction'] },
-      { type: 'incorrect' as const, templates: ['Prediction incorrect', 'Pattern mismatch', 'Prediction failed'] },
+      { type: 'status' as const, templates: ['Room initialized', 'Pattern recognition active', 'Prediction model loaded', 'Cognitive analysis engine ready', 'Pattern database synchronized'] },
+      { type: 'sequence' as const, templates: ['Sequence element generated', 'Pattern extended', 'New element added', 'Pattern sequence updated', 'Cognitive pattern expanded'] },
+      { type: 'prediction' as const, templates: ['Model B: prediction made', 'Next element predicted', 'Pattern analysis complete', 'Cognitive forecast generated', 'Pattern projection calculated'] },
+      { type: 'correct' as const, templates: ['Prediction correct', 'Pattern matched', 'Successful prediction', 'Cognitive accuracy confirmed', 'Pattern recognition validated'] },
+      { type: 'incorrect' as const, templates: ['Prediction incorrect', 'Pattern mismatch', 'Prediction failed', 'Cognitive deviation detected', 'Pattern recognition error'] },
     ]
 
     const addLog = () => {

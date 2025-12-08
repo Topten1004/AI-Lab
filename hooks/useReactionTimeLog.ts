@@ -18,10 +18,10 @@ export const useReactionTimeLog = (isFocused: boolean = false) => {
 
   useEffect(() => {
     const messages = [
-      { type: 'status' as const, templates: ['Chamber initialized', 'Models synchronized', 'Reaction threshold set'] },
-      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Signal wave generated', 'Trigger pulse transmitted'] },
-      { type: 'reaction' as const, templates: ['Model B: reaction detected', 'Response registered', 'Reaction confirmed'] },
-      { type: 'latency' as const, templates: ['Latency measured', 'Reaction time recorded'] },
+      { type: 'status' as const, templates: ['Chamber initialized', 'Models synchronized', 'Reaction threshold set', 'Response protocol active', 'Neural pathways calibrated'] },
+      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Signal wave generated', 'Trigger pulse transmitted', 'Sensory input activated', 'Response trigger initiated'] },
+      { type: 'reaction' as const, templates: ['Model B: reaction detected', 'Response registered', 'Reaction confirmed', 'Neural response triggered', 'Motor response activated'] },
+      { type: 'latency' as const, templates: ['Latency measured', 'Reaction time recorded', 'Response delay calculated', 'Processing time analyzed'] },
     ]
 
     const addLog = () => {
