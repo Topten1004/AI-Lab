@@ -20,7 +20,7 @@ export default function BehavioralConflictLog({ isFocused }: BehavioralConflictL
       
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto space-y-1 text-xs font-mono">
         {logs.map((log) => (
-          <div key={log.id} className="leading-relaxed">
+          <div key={log.id} className="leading-relaxed hover:bg-lab-surface/30 transition-colors px-1 rounded">
             <span className="text-lab-text/40">[{log.timestamp}]</span>{' '}
             <span className={getBehavioralConflictLogColor(log.type)}>
               {log.message}

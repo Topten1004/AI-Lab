@@ -14,15 +14,16 @@ export const generateLogMessage = (messages: MessageTemplate[]): LogEntry => {
     second: '2-digit'
   })
 
-  // Weighted random selection
+  // Enhanced weighted random selection with dynamic variation
   const rand = Math.random()
   let messageType: MessageTemplate
   
-  if (rand < 0.1) {
+  // Slightly adjusted weights for more balanced distribution
+  if (rand < 0.12) {
     messageType = messages[0] // status
-  } else if (rand < 0.4) {
+  } else if (rand < 0.42) {
     messageType = messages[1] // stimulus
-  } else if (rand < 0.85) {
+  } else if (rand < 0.82) {
     messageType = messages[2] // detection
   } else {
     messageType = messages[3] // miss
