@@ -55,8 +55,6 @@ export const useTextLog = (isFocused: boolean = false) => {
         clearTimeout(timeoutId)
       }
     }
-
-    return () => clearInterval(interval)
   }, [])
 
   return {
