@@ -37,10 +37,24 @@ export const useTextLog = (isFocused: boolean = false) => {
     // Initial log
     addLog()
 
-    // Add logs every 2-5 seconds
-    const interval = setInterval(() => {
-      addLog()
-    }, 2000 + Math.random() * 3000)
+    // Add logs every 2-5 seconds with dynamic variation
+    const getNextInterval = () => 2000 + Math.random() * 3000
+    let timeoutId: NodeJS.Timeout
+    
+    const scheduleNext = () => {
+      timeoutId = setTimeout(() => {
+        addLog()
+        scheduleNext()
+      }, getNextInterval())
+    }
+    
+    scheduleNext()
+    
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
 
     return () => clearInterval(interval)
   }, [])

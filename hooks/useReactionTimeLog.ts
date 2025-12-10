@@ -36,11 +36,24 @@ export const useReactionTimeLog = (isFocused: boolean = false) => {
 
     addLog()
 
-    const interval = setInterval(() => {
-      addLog()
-    }, 2000 + Math.random() * 3000)
-
-    return () => clearInterval(interval)
+    // Dynamic interval for more natural log generation
+    const getNextInterval = () => 2000 + Math.random() * 3000
+    let timeoutId: NodeJS.Timeout
+    
+    const scheduleNext = () => {
+      timeoutId = setTimeout(() => {
+        addLog()
+        scheduleNext()
+      }, getNextInterval())
+    }
+    
+    scheduleNext()
+    
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
   }, [])
 
   return {
