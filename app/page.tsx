@@ -1,6 +1,7 @@
 'use client'
 
 import { useRoomFocus } from '@/hooks/useRoomFocus'
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import AttentionResponseLab from '@/components/AttentionResponseLabPage/AttentionResponseLab'
 import ReactionTimeChamber from '@/components/ReactionTimeChamberPage/ReactionTimeChamber'
 import PatternPredictionRoom from '@/components/PatternPredictionRoomPage/PatternPredictionRoom'
@@ -8,6 +9,10 @@ import BehavioralConflictZone from '@/components/BehavioralConflictZonePage/Beha
 
 export default function Home() {
   const { focusedRoom, setFocusedRoom } = useRoomFocus('attention')
+  
+  useKeyboardShortcuts({
+    onRoomNavigate: setFocusedRoom,
+  })
 
   return (
     <main className="min-h-screen p-8">
@@ -20,6 +25,10 @@ export default function Home() {
             <p className="text-sm text-lab-text/70">
               v0.1 Experimental Research Facility
             </p>
+            <div className="mt-2 flex items-center gap-2 text-xs text-lab-text/50">
+              <span className="font-mono">[1-4]</span>
+              <span>Navigate rooms</span>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <a
