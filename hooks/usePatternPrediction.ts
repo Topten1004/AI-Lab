@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { SequenceElement } from '@/types/patternPrediction'
 import { generateSequenceElement } from '@/lib/patternPrediction/generateSequenceElement'
 import { getNextPatternValue } from '@/lib/patternPrediction/getNextPatternValue'
-import { calculateAccuracy } from '@/lib/patternPrediction/calculateAccuracy'
+import { calculateAdaptiveAccuracy, calculatePredictionSuccessRate } from '@/lib/patternPrediction/calculateAdaptiveAccuracy'
 import { limitSequenceLength } from '@/lib/patternPrediction/limitSequenceLength'
 import { generatePrediction } from '@/lib/patternPrediction/generatePrediction'
 
@@ -24,6 +24,9 @@ export const usePatternPrediction = () => {
   const elementIdRef = useRef(0)
   const [currentPattern, setCurrentPattern] = useState<string[]>(PATTERNS[0])
   const [patternIndex, setPatternIndex] = useState(0)
+  const totalPredictionsRef = useRef(0)
+  const correctPredictionsRef = useRef(0)
+  const [learningProgress, setLearningProgress] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,8 +45,10 @@ export const usePatternPrediction = () => {
         setModelBStatus('predicting')
         
         setTimeout(() => {
-          // Prediction logic: sometimes correct, sometimes wrong
-          const willPredictCorrectly = Math.random() > 0.25 // 75% accuracy
+          // Adaptive learning: accuracy improves over time
+          totalPredictionsRef.current += 1
+          const successRate = calculatePredictionSuccessRate(totalPredictionsRef.current)
+          const willPredictCorrectly = Math.random() < successRate
           const predictedValue = generatePrediction(currentPattern, patternIndex, willPredictCorrectly)
           
           setPrediction(predictedValue)
@@ -58,7 +63,23 @@ export const usePatternPrediction = () => {
                   ? { ...s, predicted: true, correct: isCorrect } 
                   : s
               )
-              setAccuracy(calculateAccuracy(updated, { ...newElement, predicted: true, correct: isCorrect }, isCorrect))
+              
+              // Track correct predictions for adaptive learning
+              if (isCorrect) {
+                correctPredictionsRef.current += 1
+              }
+              
+              // Calculate adaptive accuracy that improves over time
+              const adaptiveAccuracy = calculateAdaptiveAccuracy(
+                totalPredictionsRef.current,
+                correctPredictionsRef.current
+              )
+              setAccuracy(adaptiveAccuracy)
+              
+              // Calculate learning progress (0-100%)
+              const progress = Math.min((totalPredictionsRef.current / 30) * 100, 100)
+              setLearningProgress(progress)
+              
               return updated
             })
             
@@ -74,13 +95,17 @@ export const usePatternPrediction = () => {
     return () => clearInterval(interval)
   }, [sequence.length, patternIndex, currentPattern])
 
-  // Change pattern occasionally
+  // Change pattern occasionally (reset learning when pattern changes)
   useEffect(() => {
     const patternChange = setInterval(() => {
       const newPattern = PATTERNS[Math.floor(Math.random() * PATTERNS.length)]
       setCurrentPattern(newPattern)
       setSequence([])
       setPatternIndex(0)
+      // Reset learning counters when pattern changes (model needs to adapt to new pattern)
+      totalPredictionsRef.current = 0
+      correctPredictionsRef.current = 0
+      setLearningProgress(0)
     }, 30000) // Change every 30 seconds
 
     return () => clearInterval(patternChange)
@@ -98,6 +123,8 @@ export const usePatternPrediction = () => {
     modelBStatus,
     accuracy,
     currentPattern,
+    learningProgress,
+    totalPredictions: totalPredictionsRef.current,
   }
 }
 

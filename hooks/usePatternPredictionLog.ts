@@ -23,6 +23,7 @@ export const usePatternPredictionLog = (isFocused: boolean = false) => {
       { type: 'prediction' as const, templates: ['Model B: prediction made', 'Next element predicted', 'Pattern analysis complete', 'Cognitive forecast generated', 'Pattern projection calculated'] },
       { type: 'correct' as const, templates: ['Prediction correct', 'Pattern matched', 'Successful prediction', 'Cognitive accuracy confirmed', 'Pattern recognition validated'] },
       { type: 'incorrect' as const, templates: ['Prediction incorrect', 'Pattern mismatch', 'Prediction failed', 'Cognitive deviation detected', 'Pattern recognition error'] },
+      { type: 'adaptation' as const, templates: ['Model adjusted internal parameters', 'Learning rate optimized', 'Pattern recognition improved', 'Cognitive adaptation successful', 'Model performance enhanced', 'Neural weights updated', 'Prediction accuracy increased'] },
     ]
 
     const addLog = () => {

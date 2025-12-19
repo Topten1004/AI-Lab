@@ -9,6 +9,6 @@ export interface LogEntry {
   id: number
   timestamp: string
   message: string
-  type: 'sequence' | 'prediction' | 'correct' | 'incorrect' | 'status'
+  type: 'sequence' | 'prediction' | 'correct' | 'incorrect' | 'status' | 'adaptation'
 }
 

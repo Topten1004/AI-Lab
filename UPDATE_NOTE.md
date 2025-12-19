@@ -27,3 +27,22 @@ The observation facility now supports rapid room navigation through keyboard sho
 The system intelligently ignores keyboard input when researchers are typing in text fields, ensuring seamless operation during active observation sessions.
 
 This update enhances the facility's usability while maintaining the scientific precision of our behavioral observation protocols.
+
+---
+
+# Latest Update: Adaptive Learning System
+
+**Facility Update v0.1.2**
+
+The Pattern Prediction Room now features an advanced adaptive learning system. Model B demonstrates genuine cognitive improvement, starting with lower accuracy and gradually enhancing its prediction capabilities through experience.
+
+**New Features:**
+- **Adaptive Accuracy**: Model starts at ~50% accuracy and improves to ~92% over time
+- **Learning Progress Indicator**: Visual progress bar showing model's learning advancement
+- **Adaptation Log Messages**: Real-time notifications when the model adjusts its internal parameters
+- **Experience-Based Improvement**: Model learns from each prediction, becoming more accurate with practice
+- **Pattern Adaptation**: When patterns change, the model resets and adapts to new sequences
+
+The system tracks total predictions and correct responses, calculating adaptive accuracy that reflects both actual performance and learning progress. This creates a realistic simulation of AI model improvement through experience and feedback.
+
+This update demonstrates observable AI behavioral evolution, showing how models can improve their performance through continuous learning and adaptation.

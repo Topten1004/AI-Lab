@@ -17,16 +17,18 @@ export const generatePatternPredictionLogMessage = (messages: MessageTemplate[])
   const rand = Math.random()
   let messageType: MessageTemplate
   
-  if (rand < 0.1) {
+  if (rand < 0.08) {
     messageType = messages[0] // status
-  } else if (rand < 0.3) {
+  } else if (rand < 0.25) {
     messageType = messages[1] // sequence
-  } else if (rand < 0.5) {
+  } else if (rand < 0.45) {
     messageType = messages[2] // prediction
-  } else if (rand < 0.85) {
+  } else if (rand < 0.75) {
     messageType = messages[3] // correct
-  } else {
+  } else if (rand < 0.90) {
     messageType = messages[4] // incorrect
+  } else {
+    messageType = messages[5] // adaptation
   }
 
   const template = messageType.templates[

@@ -3,7 +3,7 @@
 import { usePatternPrediction } from '@/hooks/usePatternPrediction'
 
 export default function PatternPredictionVisual() {
-  const { sequence, prediction, modelAStatus, modelBStatus, accuracy, currentPattern } = usePatternPrediction()
+  const { sequence, prediction, modelAStatus, modelBStatus, accuracy, currentPattern, learningProgress } = usePatternPrediction()
 
   return (
     <div className="lab-border rounded-lg p-6 bg-lab-bg h-[400px] relative overflow-hidden">
@@ -35,6 +35,15 @@ export default function PatternPredictionVisual() {
         </div>
         <div className="text-xs text-lab-text/50 mt-1">
           Accuracy: {accuracy}%
+        </div>
+        <div className="mt-2">
+          <div className="text-xs text-lab-text/40 mb-1">Learning Progress</div>
+          <div className="w-24 h-1.5 bg-lab-text/10 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-lab-accent transition-all duration-500"
+              style={{ width: `${learningProgress}%` }}
+            />
+          </div>
         </div>
       </div>
 
