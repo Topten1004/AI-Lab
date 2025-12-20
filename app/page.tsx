@@ -6,7 +6,6 @@ import AttentionResponseLab from '@/components/AttentionResponseLabPage/Attentio
 import ReactionTimeChamber from '@/components/ReactionTimeChamberPage/ReactionTimeChamber'
 import PatternPredictionRoom from '@/components/PatternPredictionRoomPage/PatternPredictionRoom'
 import BehavioralConflictZone from '@/components/BehavioralConflictZonePage/BehavioralConflictZone'
-import SystemMetricsPanel from '@/components/SystemMetricsPanel'
 
 export default function Home() {
   const { focusedRoom, setFocusedRoom } = useRoomFocus('attention')
@@ -18,21 +17,20 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <div className="max-w-[1440px] mx-auto">
-        <header className="mb-8 pb-4 border-b border-lab-border">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <h1 className="text-2xl font-mono text-lab-accent mb-2">
-                AI Behavioral Observation Protocol
-              </h1>
-              <p className="text-sm text-lab-text/70">
-                v0.1 Experimental Research Facility
-              </p>
-              <div className="mt-2 flex items-center gap-2 text-xs text-lab-text/50">
-                <span className="font-mono">[1-4]</span>
-                <span>Navigate rooms</span>
-              </div>
+        <header className="mb-8 pb-4 border-b border-lab-border flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-mono text-lab-accent mb-2">
+              AI Behavioral Observation Protocol
+            </h1>
+            <p className="text-sm text-lab-text/70">
+              v0.1 Experimental Research Facility
+            </p>
+            <div className="mt-2 flex items-center gap-2 text-xs text-lab-text/50">
+              <span className="font-mono">[1-4]</span>
+              <span>Navigate rooms</span>
             </div>
-            <div className="flex items-center gap-4">
+          </div>
+          <div className="flex items-center gap-4">
             <a
               href="https://github.com/Topten1004/AI-Lab"
               target="_blank"
@@ -66,10 +64,6 @@ export default function Home() {
               </svg>
             </a>
           </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <SystemMetricsPanel />
-        </div>
         </header>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

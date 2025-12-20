@@ -2,6 +2,7 @@
 
 import ExperimentVisual from './ExperimentVisual'
 import TextLog from './TextLog'
+import PerformanceIndicator from './PerformanceIndicator'
 
 interface AttentionResponseLabProps {
   isFocused: boolean
@@ -29,7 +30,7 @@ export default function AttentionResponseLab({ isFocused, onFocus }: AttentionRe
       </div>
       
       <div 
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="lg:col-span-2">
@@ -38,6 +39,13 @@ export default function AttentionResponseLab({ isFocused, onFocus }: AttentionRe
         <div className="lg:col-span-1">
           <TextLog isFocused={isFocused} />
         </div>
+      </div>
+
+      <div 
+        className="pt-4 border-t border-lab-border"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <PerformanceIndicator />
       </div>
     </div>
   )

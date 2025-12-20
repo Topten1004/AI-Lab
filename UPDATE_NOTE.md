@@ -49,19 +49,21 @@ This update demonstrates observable AI behavioral evolution, showing how models 
 
 ---
 
-# Latest Update: System Performance Dashboard
+# Latest Update: Integrated Performance Indicators
 
 **Facility Update v0.1.3**
 
-The observation facility now includes a real-time System Performance Dashboard that provides comprehensive metrics across all experimental chambers. This centralized monitoring system offers researchers instant visibility into facility operations and AI model performance.
+Each experimental chamber now features integrated performance indicators at the bottom of each room. This provides immediate, room-specific metrics and trends without requiring a separate dashboard, keeping each room's information self-contained and easily accessible.
 
 **New Features:**
-- **Real-Time Uptime Tracking**: Monitor facility operational time with precise second-by-second updates
-- **Experiment Counter**: Track total number of experiments conducted across all chambers
-- **Active Models Display**: View the number of AI models currently engaged in experiments
-- **System Health Indicator**: Visual health bar showing overall facility status (95-100% range)
-- **Live Metrics Updates**: All metrics refresh every second for real-time monitoring
+- **Per-Room Performance Indicators**: Each room displays its own real-time performance metric at the bottom
+  - Attention Response Lab: Detection Rate with trend indicator
+  - Reaction Time Chamber: Response Efficiency (inverted reaction time) with trend
+  - Pattern Prediction Room: Accuracy with trend indicator
+  - Behavioral Conflict Zone: Balance Score with trend indicator
+- **Performance Trends**: Visual trend indicators (↑ improving, ↓ declining, → stable) for each room
+- **Status Classification**: Color-coded performance status (green/yellow/red) based on performance thresholds
+- **Visual Progress Bars**: Full-width progress bars showing current performance levels
+- **Real-Time Updates**: Metrics update automatically as experiments progress
 
-The dashboard is positioned in the header section, providing immediate access to critical facility information. The system health indicator uses color-coded visualization (green for optimal, yellow for good, red for degraded) to quickly communicate facility status.
-
-This update enhances observability and provides researchers with essential metrics at a glance, supporting better understanding of AI behavioral patterns and facility performance.
+The indicators are positioned at the bottom of each room with a subtle border separator, providing immediate visibility into each chamber's performance without cluttering the interface. This design keeps each room's metrics contextual and easily accessible, enhancing the observability of individual experiments while maintaining the clean, scientific aesthetic of the facility.
