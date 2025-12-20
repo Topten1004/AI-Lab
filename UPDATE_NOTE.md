@@ -46,3 +46,22 @@ The Pattern Prediction Room now features an advanced adaptive learning system. M
 The system tracks total predictions and correct responses, calculating adaptive accuracy that reflects both actual performance and learning progress. This creates a realistic simulation of AI model improvement through experience and feedback.
 
 This update demonstrates observable AI behavioral evolution, showing how models can improve their performance through continuous learning and adaptation.
+
+---
+
+# Latest Update: System Performance Dashboard
+
+**Facility Update v0.1.3**
+
+The observation facility now includes a real-time System Performance Dashboard that provides comprehensive metrics across all experimental chambers. This centralized monitoring system offers researchers instant visibility into facility operations and AI model performance.
+
+**New Features:**
+- **Real-Time Uptime Tracking**: Monitor facility operational time with precise second-by-second updates
+- **Experiment Counter**: Track total number of experiments conducted across all chambers
+- **Active Models Display**: View the number of AI models currently engaged in experiments
+- **System Health Indicator**: Visual health bar showing overall facility status (95-100% range)
+- **Live Metrics Updates**: All metrics refresh every second for real-time monitoring
+
+The dashboard is positioned in the header section, providing immediate access to critical facility information. The system health indicator uses color-coded visualization (green for optimal, yellow for good, red for degraded) to quickly communicate facility status.
+
+This update enhances observability and provides researchers with essential metrics at a glance, supporting better understanding of AI behavioral patterns and facility performance.
