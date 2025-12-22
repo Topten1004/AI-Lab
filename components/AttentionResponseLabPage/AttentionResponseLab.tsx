@@ -3,6 +3,7 @@
 import ExperimentVisual from './ExperimentVisual'
 import TextLog from './TextLog'
 import PerformanceIndicator from './PerformanceIndicator'
+import ModelActivityIndicator from './ModelActivityIndicator'
 
 interface AttentionResponseLabProps {
   isFocused: boolean
@@ -42,9 +43,10 @@ export default function AttentionResponseLab({ isFocused, onFocus }: AttentionRe
       </div>
 
       <div 
-        className="pt-4 border-t border-lab-border"
+        className="pt-4 border-t border-lab-border space-y-3"
         onClick={(e) => e.stopPropagation()}
       >
+        <ModelActivityIndicator />
         <PerformanceIndicator />
       </div>
     </div>

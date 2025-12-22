@@ -3,6 +3,7 @@
 import ReactionTimeVisual from './ReactionTimeVisual'
 import ReactionTimeLog from './ReactionTimeLog'
 import PerformanceIndicator from './PerformanceIndicator'
+import ModelActivityIndicator from './ModelActivityIndicator'
 
 interface ReactionTimeChamberProps {
   isFocused: boolean
@@ -42,9 +43,10 @@ export default function ReactionTimeChamber({ isFocused, onFocus }: ReactionTime
       </div>
 
       <div 
-        className="pt-4 border-t border-lab-border"
+        className="pt-4 border-t border-lab-border space-y-3"
         onClick={(e) => e.stopPropagation()}
       >
+        <ModelActivityIndicator />
         <PerformanceIndicator />
       </div>
     </div>

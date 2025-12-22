@@ -67,3 +67,33 @@ Each experimental chamber now features integrated performance indicators at the 
 - **Real-Time Updates**: Metrics update automatically as experiments progress
 
 The indicators are positioned at the bottom of each room with a subtle border separator, providing immediate visibility into each chamber's performance without cluttering the interface. This design keeps each room's metrics contextual and easily accessible, enhancing the observability of individual experiments while maintaining the clean, scientific aesthetic of the facility.
+
+---
+
+# Latest Update: Model Activity Level Tracking
+
+**Facility Update v0.1.4**
+
+Each experimental chamber now features Model Activity Level Tracking, providing real-time observation of how active each AI model is over time. This enhancement improves observation capabilities by showing engagement metrics and behavioral patterns for each model.
+
+**New Features:**
+- **Real-Time Activity Calculation**: Tracks active time vs. total time over a 30-second rolling window
+- **Activity Level Percentage**: Shows percentage of time each model has been active (0-100%)
+- **Status Classification**: Four activity levels:
+  - High (≥70%): Model is highly active
+  - Medium (40-69%): Moderate activity
+  - Low (10-39%): Low activity
+  - Idle (<10%): Minimal or no activity
+- **Visual Indicators**: Color-coded status dots and percentages for quick assessment
+- **Per-Model Tracking**: Separate activity metrics for Model A and Model B in each room
+- **Dynamic Updates**: Activity levels update every 100ms for real-time accuracy
+
+**Room-Specific Activity Tracking:**
+- **Attention Response Lab**: Tracks generation and detection activity
+- **Reaction Time Chamber**: Monitors emission and reaction activity
+- **Pattern Prediction Room**: Tracks sequence generation and prediction activity
+- **Behavioral Conflict Zone**: Monitors domination and adaptation activity
+
+The activity indicators are displayed above the performance indicators at the bottom of each room, providing researchers with immediate insights into model engagement levels. This helps identify which models are most active, understand behavioral patterns, and observe how activity correlates with performance metrics.
+
+This update enhances observation capabilities by making model engagement and activity patterns visible, helping researchers better understand AI behavioral dynamics and identify periods of high or low model activity.

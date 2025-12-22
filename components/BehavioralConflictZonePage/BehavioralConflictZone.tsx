@@ -3,6 +3,7 @@
 import BehavioralConflictVisual from './BehavioralConflictVisual'
 import BehavioralConflictLog from './BehavioralConflictLog'
 import PerformanceIndicator from './PerformanceIndicator'
+import ModelActivityIndicator from './ModelActivityIndicator'
 
 interface BehavioralConflictZoneProps {
   isFocused: boolean
@@ -42,9 +43,10 @@ export default function BehavioralConflictZone({ isFocused, onFocus }: Behaviora
       </div>
 
       <div 
-        className="pt-4 border-t border-lab-border"
+        className="pt-4 border-t border-lab-border space-y-3"
         onClick={(e) => e.stopPropagation()}
       >
+        <ModelActivityIndicator />
         <PerformanceIndicator />
       </div>
     </div>
