@@ -7,6 +7,7 @@ import { getNextPatternValue } from '@/lib/patternPrediction/getNextPatternValue
 import { calculateAdaptiveAccuracy, calculatePredictionSuccessRate } from '@/lib/patternPrediction/calculateAdaptiveAccuracy'
 import { limitSequenceLength } from '@/lib/patternPrediction/limitSequenceLength'
 import { generatePrediction } from '@/lib/patternPrediction/generatePrediction'
+import { calculateConfidence } from '@/lib/patternPrediction/calculateConfidence'
 
 const PATTERNS = [
   ['A', 'B', 'C', 'A', 'B', 'C'],
@@ -27,6 +28,9 @@ export const usePatternPrediction = () => {
   const totalPredictionsRef = useRef(0)
   const correctPredictionsRef = useRef(0)
   const [learningProgress, setLearningProgress] = useState(0)
+  const [confidence, setConfidence] = useState(0)
+  const patternAgeRef = useRef(0)
+  const isPatternNewRef = useRef(true)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,6 +84,15 @@ export const usePatternPrediction = () => {
               const progress = Math.min((totalPredictionsRef.current / 30) * 100, 100)
               setLearningProgress(progress)
               
+              // Calculate confidence score
+              const currentConfidence = calculateConfidence(
+                totalPredictionsRef.current,
+                adaptiveAccuracy,
+                patternAgeRef.current,
+                isPatternNewRef.current
+              )
+              setConfidence(currentConfidence)
+              
               return updated
             })
             
@@ -106,10 +119,25 @@ export const usePatternPrediction = () => {
       totalPredictionsRef.current = 0
       correctPredictionsRef.current = 0
       setLearningProgress(0)
+      patternAgeRef.current = 0
+      isPatternNewRef.current = true
+      setConfidence(0)
     }, 30000) // Change every 30 seconds
 
     return () => clearInterval(patternChange)
   }, [])
+
+  // Track pattern age for confidence calculation
+  useEffect(() => {
+    const ageInterval = setInterval(() => {
+      patternAgeRef.current += 1
+      if (patternAgeRef.current > 2) {
+        isPatternNewRef.current = false
+      }
+    }, 1000)
+
+    return () => clearInterval(ageInterval)
+  }, [currentPattern])
 
   // Keep only last 8 elements
   useEffect(() => {
@@ -125,6 +153,7 @@ export const usePatternPrediction = () => {
     currentPattern,
     learningProgress,
     totalPredictions: totalPredictionsRef.current,
+    confidence,
   }
 }
 

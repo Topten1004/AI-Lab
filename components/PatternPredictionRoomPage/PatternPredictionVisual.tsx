@@ -1,9 +1,10 @@
 'use client'
 
 import { usePatternPrediction } from '@/hooks/usePatternPrediction'
+import { getConfidenceColor, getConfidenceLevel, getConfidenceBgColor } from '@/lib/patternPrediction/calculateConfidence'
 
 export default function PatternPredictionVisual() {
-  const { sequence, prediction, modelAStatus, modelBStatus, accuracy, currentPattern, learningProgress } = usePatternPrediction()
+  const { sequence, prediction, modelAStatus, modelBStatus, accuracy, currentPattern, learningProgress, confidence } = usePatternPrediction()
 
   return (
     <div className="lab-border rounded-lg p-6 bg-lab-bg h-[400px] relative overflow-hidden">
@@ -43,6 +44,25 @@ export default function PatternPredictionVisual() {
               className="h-full bg-lab-accent transition-all duration-500"
               style={{ width: `${learningProgress}%` }}
             />
+          </div>
+        </div>
+        <div className="mt-3">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs text-lab-text/40">Confidence</span>
+            <span className={`text-xs font-mono ${getConfidenceColor(confidence)}`}>
+              {confidence}%
+            </span>
+          </div>
+          <div className="w-24 h-1.5 bg-lab-text/10 rounded-full overflow-hidden">
+            <div 
+              className={`h-full transition-all duration-500 ${getConfidenceBgColor(confidence)}`}
+              style={{ width: `${confidence}%` }}
+            />
+          </div>
+          <div className="text-xs text-lab-text/30 mt-0.5">
+            {getConfidenceLevel(confidence) === 'high' && 'High certainty'}
+            {getConfidenceLevel(confidence) === 'medium' && 'Moderate certainty'}
+            {getConfidenceLevel(confidence) === 'low' && 'Low certainty'}
           </div>
         </div>
       </div>
