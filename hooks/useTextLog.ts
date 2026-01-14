@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import type { LogEntry } from '@/types/attentionResponse'
 import { generateLogMessage } from '@/lib/textLog/generateLogMessage'
+import { generateExperimentId } from '@/lib/behavioralMetrics/generateExperimentId'
 
 export const useTextLog = (isFocused: boolean = false) => {
   const [logs, setLogs] = useState<LogEntry[]>([])
@@ -16,16 +17,55 @@ export const useTextLog = (isFocused: boolean = false) => {
     }
   }, [logs, isFocused])
 
+  const experimentIdRef = useRef<string | undefined>(undefined)
+  const detectionRatesRef = useRef<number[]>([])
+  const responseTimesRef = useRef<number[]>([])
+  const changeEventsRef = useRef(0)
+
   useEffect(() => {
+    // Generate unique experiment ID on mount
+    if (!experimentIdRef.current) {
+      experimentIdRef.current = generateExperimentId()
+    }
+
     const messages = [
-      { type: 'status' as const, templates: ['System initialized', 'Models synchronized', 'Detection threshold calibrated', 'Observation protocol active', 'Neural pathways established'] },
-      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Pattern generated', 'Signal wave transmitted', 'Stimulus sequence initiated', 'Sensory input generated', 'Pattern wavefront detected'] },
-      { type: 'detection' as const, templates: ['Model B: response detected', 'Pattern recognized', 'Signal matched', 'Detection confirmed', 'Neural response triggered', 'Pattern correlation established'] },
-      { type: 'miss' as const, templates: ['Stimulus not detected', 'Pattern missed', 'Signal below threshold', 'Detection failed', 'Response threshold not met', 'Pattern recognition incomplete'] },
+      { type: 'status' as const, templates: ['System initialized', 'Models synchronized', 'Detection threshold calibrated', 'Observation protocol active', 'Neural pathways established', 'Experiment session started', 'Behavioral tracking enabled', 'Metrics collection active'] },
+      { type: 'stimulus' as const, templates: ['Stimulus emitted', 'Pattern generated', 'Signal wave transmitted', 'Stimulus sequence initiated', 'Sensory input generated', 'Pattern wavefront detected', 'Stimulus pulse activated', 'Signal burst transmitted', 'Pattern wave generated', 'Sensory trigger activated'] },
+      { type: 'detection' as const, templates: ['Model B: response detected', 'Pattern recognized', 'Signal matched', 'Detection confirmed', 'Neural response triggered', 'Pattern correlation established', 'Stimulus successfully identified', 'Pattern match confirmed', 'Detection threshold exceeded', 'Recognition pattern validated'] },
+      { type: 'miss' as const, templates: ['Stimulus not detected', 'Pattern missed', 'Signal below threshold', 'Detection failed', 'Response threshold not met', 'Pattern recognition incomplete', 'Detection timeout', 'Signal lost', 'Pattern mismatch', 'Recognition failure'] },
+      { type: 'metric' as const, templates: ['Behavioral metrics updated', 'Performance analysis complete', 'Stability measurement recorded', 'Variability index calculated', 'Deviation analysis performed', 'Reactivity assessment updated'] },
+      { type: 'anomaly' as const, templates: ['Anomalous behavior detected', 'Unexpected pattern observed', 'Deviation from baseline', 'Anomaly threshold exceeded', 'Irregular response pattern', 'Behavioral anomaly flagged'] },
+      { type: 'performance' as const, templates: ['Performance metrics logged', 'Efficiency analysis complete', 'Response time optimized', 'Detection rate improved', 'System performance stable', 'Optimization cycle complete'] },
     ]
 
     const addLog = () => {
-      const newLog = generateLogMessage(messages)
+      // Simulate detection rate tracking (for metrics)
+      const currentDetectionRate = 60 + Math.random() * 30
+      detectionRatesRef.current.push(currentDetectionRate)
+      if (detectionRatesRef.current.length > 10) {
+        detectionRatesRef.current.shift()
+      }
+
+      // Simulate response time tracking
+      const responseTime = 200 + Math.random() * 400
+      responseTimesRef.current.push(responseTime)
+      if (responseTimesRef.current.length > 10) {
+        responseTimesRef.current.shift()
+      }
+
+      // Track change events
+      if (Math.random() < 0.1) {
+        changeEventsRef.current += 1
+      }
+
+      const newLog = generateLogMessage(messages, {
+        experimentId: experimentIdRef.current,
+        recentDetectionRates: detectionRatesRef.current,
+        recentResponseTimes: responseTimesRef.current,
+        currentDetectionRate,
+        expectedDetectionRate: 70,
+        changeEvents: changeEventsRef.current,
+      })
       newLog.id = logIdRef.current++
 
       setLogs(prev => {

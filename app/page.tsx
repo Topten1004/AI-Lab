@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useRoomFocus } from '@/hooks/useRoomFocus'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import AttentionResponseLab from '@/components/AttentionResponseLabPage/AttentionResponseLab'
@@ -7,12 +8,25 @@ import ReactionTimeChamber from '@/components/ReactionTimeChamberPage/ReactionTi
 import PatternPredictionRoom from '@/components/PatternPredictionRoomPage/PatternPredictionRoom'
 import BehavioralConflictZone from '@/components/BehavioralConflictZonePage/BehavioralConflictZone'
 
+const CONTRACT_ADDRESS = 'Hm34R32GW95hHBwuxDCm1Ms3srzbzkvdZjzNraypump' // Replace with actual contract address when available
+
 export default function Home() {
   const { focusedRoom, setFocusedRoom } = useRoomFocus('attention')
-  
+  const [copied, setCopied] = useState(false)
+
   useKeyboardShortcuts({
     onRoomNavigate: setFocusedRoom,
   })
+
+  const handleCopyCA = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTRACT_ADDRESS)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
 
   return (
     <main className="min-h-screen p-8">
@@ -22,6 +36,18 @@ export default function Home() {
             <h1 className="text-2xl font-mono text-lab-accent mb-2">
               AI Behavioral Observation Protocol
             </h1>
+            <p className="text-xs font-mono text-lab-accent mt-1">
+              CA:{' '}
+              <button
+                onClick={handleCopyCA}
+                className="cursor-pointer hover:opacity-80 transition-opacity underline"
+                title="Click to copy contract address"
+              >
+                {CONTRACT_ADDRESS}
+              </button>
+              {copied && <span className="ml-2 text-green-400">✓ Copied!</span>}
+            </p>
+            <br />
             <p className="text-sm text-lab-text/70">
               v0.1 Experimental Research Facility
             </p>
@@ -31,6 +57,19 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <a
+              href="https://dexscreener.com/solana/hmd1ugengw2yeubrrtjr5gfluzjrbzkkwxupzsjbcr8z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lab-text/70 hover:text-lab-accent transition-colors opacity-70 hover:opacity-100"
+              aria-label="View on DexScreener"
+            >
+              <img
+                src="/dexscreener_icon.png"
+                alt="DexScreener"
+                className="w-6 h-6"
+              />
+            </a>
             <a
               href="https://github.com/Topten1004/AI-Lab"
               target="_blank"
@@ -65,28 +104,28 @@ export default function Home() {
             </a>
           </div>
         </header>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div id="room-attention">
-            <AttentionResponseLab 
+            <AttentionResponseLab
               isFocused={focusedRoom === 'attention'}
               onFocus={() => setFocusedRoom('attention')}
             />
           </div>
           <div id="room-reaction">
-            <ReactionTimeChamber 
+            <ReactionTimeChamber
               isFocused={focusedRoom === 'reaction'}
               onFocus={() => setFocusedRoom('reaction')}
             />
           </div>
           <div id="room-pattern">
-            <PatternPredictionRoom 
+            <PatternPredictionRoom
               isFocused={focusedRoom === 'pattern'}
               onFocus={() => setFocusedRoom('pattern')}
             />
           </div>
           <div id="room-conflict">
-            <BehavioralConflictZone 
+            <BehavioralConflictZone
               isFocused={focusedRoom === 'conflict'}
               onFocus={() => setFocusedRoom('conflict')}
             />
