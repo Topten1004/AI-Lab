@@ -22,7 +22,7 @@ The observation facility now supports rapid room navigation through keyboard sho
 - Press `1` to navigate to Attention Response Lab
 - Press `2` to navigate to Reaction Time Chamber  
 - Press `3` to navigate to Pattern Prediction Room
-- Press `4` to navigate to Behavioral Conflict Zone
+- Press `4` to navigate to Conflict Zone
 
 The system intelligently ignores keyboard input when researchers are typing in text fields, ensuring seamless operation during active observation sessions.
 
@@ -60,7 +60,7 @@ Each experimental chamber now features integrated performance indicators at the 
   - Attention Response Lab: Detection Rate with trend indicator
   - Reaction Time Chamber: Response Efficiency (inverted reaction time) with trend
   - Pattern Prediction Room: Accuracy with trend indicator
-  - Behavioral Conflict Zone: Balance Score with trend indicator
+  - Conflict Zone: Balance Score with trend indicator
 - **Performance Trends**: Visual trend indicators (↑ improving, ↓ declining, → stable) for each room
 - **Status Classification**: Color-coded performance status (green/yellow/red) based on performance thresholds
 - **Visual Progress Bars**: Full-width progress bars showing current performance levels
@@ -92,7 +92,7 @@ Each experimental chamber now features Model Activity Level Tracking, providing 
 - **Attention Response Lab**: Tracks generation and detection activity
 - **Reaction Time Chamber**: Monitors emission and reaction activity
 - **Pattern Prediction Room**: Tracks sequence generation and prediction activity
-- **Behavioral Conflict Zone**: Monitors domination and adaptation activity
+- **Conflict Zone**: Monitors domination and adaptation activity
 
 The activity indicators are displayed above the performance indicators at the bottom of each room, providing researchers with immediate insights into model engagement levels. This helps identify which models are most active, understand behavioral patterns, and observe how activity correlates with performance metrics.
 

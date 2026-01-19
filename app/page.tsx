@@ -8,17 +8,20 @@ import ReactionTimeChamber from '@/components/ReactionTimeChamberPage/ReactionTi
 import PatternPredictionRoom from '@/components/PatternPredictionRoomPage/PatternPredictionRoom'
 import BehavioralConflictZone from '@/components/BehavioralConflictZonePage/BehavioralConflictZone'
 
-const CONTRACT_ADDRESS = 'Hm34R32GW95hHBwuxDCm1Ms3srzbzkvdZjzNraypump' // Replace with actual contract address when available
-
 export default function Home() {
   const { focusedRoom, setFocusedRoom } = useRoomFocus('attention')
   const [copied, setCopied] = useState(false)
+
+  const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || '...'
+  const DEX_LINK = process.env.NEXT_PUBLIC_DEX_LINK || 'https://dexscreener.com'
 
   useKeyboardShortcuts({
     onRoomNavigate: setFocusedRoom,
   })
 
   const handleCopyCA = async () => {
+    if (CONTRACT_ADDRESS === '...') return
+
     try {
       await navigator.clipboard.writeText(CONTRACT_ADDRESS)
       setCopied(true)
@@ -31,34 +34,44 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <div className="max-w-[1440px] mx-auto">
-        <header className="mb-8 pb-4 border-b border-lab-border flex items-start justify-between">
-          <div>
-            <h1 className="text-2xl font-mono text-lab-accent mb-2">
-              AI Behavioral Observation Protocol
-            </h1>
-            <p className="text-xs font-mono text-lab-accent mt-1">
-              CA:{' '}
-              <button
-                onClick={handleCopyCA}
-                className="cursor-pointer hover:opacity-80 transition-opacity underline"
-                title="Click to copy contract address"
-              >
-                {CONTRACT_ADDRESS}
-              </button>
-              {copied && <span className="ml-2 text-green-400">✓ Copied!</span>}
-            </p>
-            <br />
-            <p className="text-sm text-lab-text/70">
-              v0.1 Experimental Research Facility
-            </p>
-            <div className="mt-2 flex items-center gap-2 text-xs text-lab-text/50">
-              <span className="font-mono">[1-4]</span>
-              <span>Navigate rooms</span>
+        <header className="mb-8 pb-4 flex items-start justify-between">
+          <div className='space-y-6'>
+            <div className="flex items-center gap-4">
+              <img
+                src="/LOGO_transparent.png"
+                alt="NOESIS Logo"
+                className="h-16 w-auto"
+              />
+              <div>
+                <h1 className="text-2xl font-mono font-bold text-lab-accent mb-2">
+                  NOESIS - AI Observation Protocol
+                </h1>
+                <p className="text-xs font-mono text-lab-accent mt-1">
+                  <span className="font-bold">CA:</span>{' '}
+                  <button
+                    onClick={handleCopyCA}
+                    className="cursor-pointer hover:opacity-80 transition-opacity underline"
+                    title="Click to copy contract address"
+                  >
+                    {CONTRACT_ADDRESS}
+                  </button>
+                  {copied && <span className="ml-2 text-lab-accent">✓ Copied!</span>}
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-lab-text/70">
+                v0.1 Experimental Research Facility
+              </p>
+              <div className="mt-2 flex items-center gap-2 text-xs text-lab-text/50">
+                <span className="font-mono">[1-4]</span>
+                <span>Navigate rooms</span>
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://dexscreener.com/solana/hmd1ugengw2yeubrrtjr5gfluzjrbzkkwxupzsjbcr8z"
+              href={DEX_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="text-lab-text/70 hover:text-lab-accent transition-colors opacity-70 hover:opacity-100"
@@ -87,7 +100,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://x.com/behavioral_lab"
+              href="https://x.com/noesis_lab"
               target="_blank"
               rel="noopener noreferrer"
               className="text-lab-text/70 hover:text-lab-accent transition-colors"
@@ -106,16 +119,10 @@ export default function Home() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div id="room-attention">
-            <AttentionResponseLab
-              isFocused={focusedRoom === 'attention'}
-              onFocus={() => setFocusedRoom('attention')}
-            />
-          </div>
-          <div id="room-reaction">
-            <ReactionTimeChamber
-              isFocused={focusedRoom === 'reaction'}
-              onFocus={() => setFocusedRoom('reaction')}
+          <div id="room-conflict">
+            <BehavioralConflictZone
+              isFocused={focusedRoom === 'conflict'}
+              onFocus={() => setFocusedRoom('conflict')}
             />
           </div>
           <div id="room-pattern">
@@ -124,10 +131,16 @@ export default function Home() {
               onFocus={() => setFocusedRoom('pattern')}
             />
           </div>
-          <div id="room-conflict">
-            <BehavioralConflictZone
-              isFocused={focusedRoom === 'conflict'}
-              onFocus={() => setFocusedRoom('conflict')}
+          <div id="room-reaction">
+            <ReactionTimeChamber
+              isFocused={focusedRoom === 'reaction'}
+              onFocus={() => setFocusedRoom('reaction')}
+            />
+          </div>
+          <div id="room-attention">
+            <AttentionResponseLab
+              isFocused={focusedRoom === 'attention'}
+              onFocus={() => setFocusedRoom('attention')}
             />
           </div>
         </div>

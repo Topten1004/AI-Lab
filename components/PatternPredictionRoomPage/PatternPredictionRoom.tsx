@@ -13,41 +13,45 @@ interface PatternPredictionRoomProps {
 export default function PatternPredictionRoom({ isFocused, onFocus }: PatternPredictionRoomProps) {
   return (
     <div 
-      className={`lab-border rounded-lg p-6 bg-lab-surface transition-all duration-300 cursor-pointer ${
+      className={`p-6 bg-lab-surface transition-all duration-300 cursor-pointer border border-transparent hover:border-lab-accent/50 ${
         isFocused 
-          ? 'ring-2 ring-lab-accent ring-offset-2 ring-offset-[#0a0a0a] shadow-lg shadow-lab-accent/20' 
-          : 'hover:border-lab-accent/50'
+          ? 'ring-2 ring-lab-accent ring-offset-2 ring-offset-[#f5f5f5] shadow-lg shadow-lab-accent/20' 
+          : ''
       }`}
       onClick={onFocus}
     >
       <div className="mb-6">
-        <h2 className="text-xl font-mono text-lab-accent mb-2">
+        <h2 className="text-xl font-mono font-semibold text-lab-accent mb-2">
           Pattern Prediction Room
         </h2>
         <p className="text-sm text-lab-text/70">
           One model creates sequences, the other tries to predict the next element.
-          Goal: to demonstrate basic behavioral modeling.
+          Goal: to demonstrate basic NOESIS modeling.
         </p>
-      </div>
-      
-      <div 
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="lg:col-span-2">
-          <PatternPredictionVisual />
-        </div>
-        <div className="lg:col-span-1">
-          <PatternPredictionLog isFocused={isFocused} />
-        </div>
       </div>
 
       <div 
-        className="pt-4 border-t border-lab-border space-y-3"
+        className="pb-4 mb-6"
         onClick={(e) => e.stopPropagation()}
       >
         <ModelActivityIndicator />
-        <PerformanceIndicator />
+      </div>
+      
+      <div 
+        className="space-y-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-10">
+            <PatternPredictionVisual />
+          </div>
+          <div className="lg:col-span-2 flex items-start">
+            <PerformanceIndicator />
+          </div>
+        </div>
+        <div>
+          <PatternPredictionLog isFocused={isFocused} />
+        </div>
       </div>
     </div>
   )

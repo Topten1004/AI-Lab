@@ -28,25 +28,25 @@ export default function PerformanceIndicator() {
   }
 
   return (
-    <div className="flex items-center gap-4">
-      <div className="flex-1">
-        <div className="flex items-center justify-between mb-1">
-          <span className="text-xs text-lab-text/50">Accuracy</span>
-          <div className="flex items-center gap-1.5">
-            <span className={`text-sm font-mono ${getStatusColor(accuracy)}`}>
-              {Math.round(accuracy)}%
-            </span>
-            <span className={`text-xs ${getTrendColor(trend)}`}>
-              {getTrendIcon(trend)}
-            </span>
-          </div>
+    <div className="flex items-center gap-3">
+      <div className="w-2 h-[400px] bg-lab-text/10 overflow-hidden flex items-end relative">
+        <div
+          className={`w-full transition-all duration-500 ${getStatusBarColor(accuracy)}`}
+          style={{ height: `${Math.min(100, Math.max(0, accuracy))}%` }}
+        />
+      </div>
+      <div className="flex flex-col items-center gap-2 h-[400px] justify-between">
+        <div className="flex items-center gap-1.5 w-16 justify-center">
+          <span className={`text-sm font-mono ${getStatusColor(accuracy)}`}>
+            {Math.round(accuracy)}%
+          </span>
+          <span className={`text-xs ${getTrendColor(trend)}`}>
+            {getTrendIcon(trend)}
+          </span>
         </div>
-        <div className="w-full h-2 bg-lab-text/10 rounded-full overflow-hidden">
-          <div
-            className={`h-full transition-all duration-500 ${getStatusBarColor(accuracy)}`}
-            style={{ width: `${Math.min(100, Math.max(0, accuracy))}%` }}
-          />
-        </div>
+        <span className="text-xs text-lab-text/50 whitespace-nowrap" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+          Accuracy
+        </span>
       </div>
     </div>
   )

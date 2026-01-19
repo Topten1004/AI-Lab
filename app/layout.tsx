@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Behavioral AI Lab - Attention Response Lab',
-  description: 'Experimental research facility for AI behavioral observation',
+  title: 'NOESIS - Attention Response Lab',
+  description: 'Experimental research facility for AI observation - NOESIS Protocol',
+  icons: {
+    icon: '/LOGO_transparent.png',
+  },
 }
 
 export default function RootLayout({

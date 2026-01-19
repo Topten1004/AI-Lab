@@ -11,8 +11,8 @@ export default function PatternPredictionLog({ isFocused }: PatternPredictionLog
   const { logs, logEndRef, scrollContainerRef } = usePatternPredictionLog(isFocused)
 
   return (
-    <div className="lab-border rounded-lg p-4 bg-lab-bg h-[400px] flex flex-col">
-      <div className="mb-3 pb-2 border-b border-lab-border flex items-center justify-between">
+    <div className="p-4 bg-lab-bg h-[400px] flex flex-col">
+      <div className="mb-3 pb-2 shadow-sm flex items-center justify-between">
         <h3 className="text-sm font-mono text-lab-text/70">
           Observation Log
         </h3>

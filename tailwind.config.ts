@@ -21,12 +21,12 @@ const config: Config = {
     extend: {
       colors: {
         lab: {
-          bg: '#0a0a0a',
-          surface: '#1a1a1a',
-          border: '#2a2a2a',
-          text: '#e0e0e0',
-          accent: '#00ff88',
-          warning: '#ffaa00',
+          bg: '#f5f5f5',
+          surface: '#e5e5e5',
+          border: '#fa500b',
+          text: '#000000',
+          accent: '#fa500b',
+          warning: '#fa500b',
         },
       },
       fontFamily: {

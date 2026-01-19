@@ -6,7 +6,7 @@ export default function ExperimentVisual() {
   const { stimuli, modelAStatus, modelBStatus, detectionRate } = useAttentionResponse()
 
   return (
-    <div className="lab-border rounded-lg p-6 bg-lab-bg h-[400px] relative overflow-hidden">
+    <div className="p-6 bg-lab-bg h-[400px] relative overflow-hidden">
       {/* Model A - Stimulus Generator */}
       <div className="absolute top-4 left-4">
         <div className="flex items-center gap-2 mb-2">

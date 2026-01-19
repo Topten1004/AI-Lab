@@ -9,10 +9,10 @@ interface KeyboardShortcutsConfig {
 }
 
 const ROOM_KEY_MAP: Record<string, RoomId> = {
-  '1': 'attention',
-  '2': 'reaction',
-  '3': 'pattern',
-  '4': 'conflict',
+  '1': 'conflict',
+  '2': 'pattern',
+  '3': 'reaction',
+  '4': 'attention',
 }
 
 export const useKeyboardShortcuts = ({

@@ -10,7 +10,7 @@
   /* Custom scrollbar styling */
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(42, 42, 42, 0.8) rgba(10, 10, 10, 0.5);
+    scrollbar-color: rgba(250, 80, 11, 0.3) rgba(245, 245, 245, 0.5);
   }
   
   *::-webkit-scrollbar {
@@ -19,17 +19,15 @@
   }
   
   *::-webkit-scrollbar-track {
-    background: rgba(10, 10, 10, 0.5);
-    border-radius: 3px;
+    background: rgba(245, 245, 245, 0.5);
   }
   
   *::-webkit-scrollbar-thumb {
-    background: rgba(42, 42, 42, 0.8);
-    border-radius: 3px;
+    background: rgba(250, 80, 11, 0.3);
   }
   
   *::-webkit-scrollbar-thumb:hover {
-    background: rgba(42, 42, 42, 1);
+    background: rgba(250, 80, 11, 0.5);
   }
 }
 
@@ -39,7 +37,7 @@
   }
   
   .lab-glow {
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 10px rgba(250, 80, 11, 0.3);
   }
   
   .lab-pulse {

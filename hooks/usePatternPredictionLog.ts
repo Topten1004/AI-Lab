@@ -31,14 +31,14 @@ export const usePatternPredictionLog = (isFocused: boolean = false) => {
     }
 
     const messages = [
-      { type: 'status' as const, templates: ['Room initialized', 'Pattern recognition active', 'Prediction model loaded', 'Cognitive analysis engine ready', 'Pattern database synchronized', 'Experiment session started', 'Behavioral tracking enabled', 'Metrics collection active'] },
+      { type: 'status' as const, templates: ['Room initialized', 'Pattern recognition active', 'Prediction model loaded', 'Cognitive analysis engine ready', 'Pattern database synchronized', 'Experiment session started', 'NOESIS tracking enabled', 'Metrics collection active'] },
       { type: 'sequence' as const, templates: ['Sequence element generated', 'Pattern extended', 'New element added', 'Pattern sequence updated', 'Cognitive pattern expanded', 'Pattern element appended', 'Sequence progression logged', 'Pattern structure updated'] },
       { type: 'prediction' as const, templates: ['Model B: prediction made', 'Next element predicted', 'Pattern analysis complete', 'Cognitive forecast generated', 'Pattern projection calculated', 'Prediction algorithm executed', 'Forecast generated', 'Pattern inference complete'] },
       { type: 'correct' as const, templates: ['Prediction correct', 'Pattern matched', 'Successful prediction', 'Cognitive accuracy confirmed', 'Pattern recognition validated', 'Prediction validated', 'Pattern match confirmed', 'Accuracy verified'] },
       { type: 'incorrect' as const, templates: ['Prediction incorrect', 'Pattern mismatch', 'Prediction failed', 'Cognitive deviation detected', 'Pattern recognition error', 'Prediction error logged', 'Pattern mismatch detected', 'Forecast deviation'] },
       { type: 'adaptation' as const, templates: ['Model adjusted internal parameters', 'Learning rate optimized', 'Pattern recognition improved', 'Cognitive adaptation successful', 'Model performance enhanced', 'Neural weights updated', 'Prediction accuracy increased', 'Adaptive learning cycle complete'] },
-      { type: 'metric' as const, templates: ['Behavioral metrics updated', 'Performance analysis complete', 'Stability measurement recorded', 'Variability index calculated', 'Deviation analysis performed', 'Reactivity assessment updated'] },
-      { type: 'anomaly' as const, templates: ['Anomalous behavior detected', 'Unexpected pattern observed', 'Deviation from baseline', 'Anomaly threshold exceeded', 'Irregular response pattern', 'Behavioral anomaly flagged'] },
+      { type: 'metric' as const, templates: ['NOESIS metrics updated', 'Performance analysis complete', 'Stability measurement recorded', 'Variability index calculated', 'Deviation analysis performed', 'Reactivity assessment updated'] },
+      { type: 'anomaly' as const, templates: ['Anomalous behavior detected', 'Unexpected pattern observed', 'Deviation from baseline', 'Anomaly threshold exceeded', 'Irregular response pattern', 'NOESIS anomaly flagged'] },
       { type: 'performance' as const, templates: ['Performance metrics logged', 'Efficiency analysis complete', 'Response time optimized', 'Detection rate improved', 'System performance stable', 'Optimization cycle complete'] },
     ]
 

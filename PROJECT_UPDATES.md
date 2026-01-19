@@ -1,9 +1,9 @@
-**Behavioral AI Lab
+**NOESIS
 
 Upcoming Research Modules and System Updates
 Version 1**
 
-A refined roadmap of future modules designed specifically for the Behavioral Lab environment
+A refined roadmap of future modules designed specifically for the NOESIS environment
 atmospheric
 realistic to implement
 visually scientific
@@ -19,11 +19,11 @@ Fast and Realistic Updates**
 1. Expanded Observation Logs System
 
 New types of log entries
-More behavioral metrics
+More NOESIS metrics
 Enriched events across all chambers
 Unique log generation per experiment
 
-2. Behavioral Metrics Panel
+2. NOESIS Metrics Panel
 
 New model behavior measurements
 • stability
@@ -81,7 +81,7 @@ Logs show messages like “Model adjusted internal parameters.”
 8. Multi-Model Mode
 
 Certain chambers allow switching between multiple pseudo-models
-Each with its own behavioral patterns
+Each with its own NOESIS patterns
 
 Creates the feeling of a growing laboratory ecosystem.
 
